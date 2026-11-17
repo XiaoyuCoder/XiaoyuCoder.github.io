@@ -177,3 +177,26 @@
   .example-card h3 { font-size: 20px; }
   .calculator-note { margin-top: 32px; }
 }
+
+/* Shared tool controls */
+.tool-card { border-color: #cbddec; border-radius: 8px; background: #fff; transition: border-color .2s, background .2s, box-shadow .2s, transform .2s; }
+.tool-card + .tool-card { margin-top: 14px; }
+.tool-card:hover { border-color: #86b1e1; background: #f8fbff; box-shadow: 0 10px 25px rgb(16 52 100 / 8%); transform: translateY(-2px); }
+.tool-card-icon { border-radius: 7px; background: #e5f0ff; color: #1858bf; }
+.tool-card-arrow { border-color: #bed3e9; border-radius: 5px; transition: background .2s, color .2s; }
+.tool-card:hover .tool-card-arrow { background: #1858bf; color: #fff; }
+.tool-card-tags > span { border-radius: 4px; color: #315d8d; }
+.calculator-tabs { border-color: #ccdcec; }
+.calculator-tabs > button { color: #526c85; font-weight: 500; transition: color .2s, background .2s; }
+.calculator-tabs > button:hover, .calculator-tabs > button[aria-selected="true"] { color: #124eaa; background: #edf4ff; }
+.calculator-tabs > button[aria-selected="true"]::after { height: 3px; background: #1858bf; }
+.preset-row > button { color: #275987; border-color: #bfd5eb; border-radius: 5px; font-size: 11px; transition: background .2s, border-color .2s; }
+.preset-row > button:hover { border-color: #7ca9dd; background: #e8f1ff; }
+.input-unit { border-color: #b9cfe5; border-radius: 5px; }
+.input-unit:focus-within { border-color: #1858bf; outline-color: #d8e9ff; }
+.field > small, .calculation-assumption, .calculator-note, .field-footnote { color: #59738c; font-size: 11px; }
+.calculation-result { border-color: #c6daf0; background: #edf5ff; border-radius: 8px; box-shadow: 0 10px 25px rgb(16 52 100 / 5%); }
+.result-explanation, .result-breakdown dt { color: #466989; }
+.example-card { border-color: #cbddec; border-radius: 7px; transition: background .2s, border-color .2s, box-shadow .2s, transform .2s; }
+.example-card:hover { border-color: #86b1e1; background: #f8fbff; box-shadow: 0 8px 20px rgb(16 52 100 / 7%); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .tool-card:hover, .example-card:hover { transform: none; } }
