@@ -1,4 +1,4 @@
-import { cities, rentSource } from './city-living-data.mjs?v=20261117-city2';
+import { cities, rentSource } from './city-living-data.mjs?v=20261117-city3';
 
 const chart = document.querySelector('#city-chart');
 const list = document.querySelector('#city-list');
@@ -18,6 +18,8 @@ let area = 'small';
 let selected = '北京';
 let query = '';
 let category = 'all';
+const areaLabels = {small:'30㎡以下', medium:'30–60㎡', large:'60–90㎡', family:'90–140㎡', extra:'140㎡及以上'};
+const quadrantLabels = ['小城安逸', '闷声发财', '咬牙硬撑', '给房东打工'];
 document.querySelector('#city-total').textContent = cities.length;
 
 function svg(tag, attrs, text) {
@@ -61,7 +63,8 @@ function renderChart() {
   [[left, top, xRef-left, yRef-top, 'q-0'], [xRef, top, left+width-xRef, yRef-top, 'q-1'],
    [left, yRef, xRef-left, top+height-yRef, 'q-2'], [xRef, yRef, left+width-xRef, top+height-yRef, 'q-3']]
     .forEach(([a,b,w,h,cls]) => layer.append(svg('rect',{x:a,y:b,width:w,height:h,class:cls})));
-  for (let v = 0; v <= yMax; v += 10) {
+  const yStep = Math.max(10, Math.ceil(yMax / 60) * 10);
+  for (let v = 0; v <= yMax; v += yStep) {
     layer.append(svg('line',{x1:left,y1:y(v),x2:left+width,y2:y(v),class:'grid-line'}));
     layer.append(svg('text',{x:left-13,y:y(v)+5,'text-anchor':'end',class:'axis-label'},`${v}%`));
   }
@@ -71,10 +74,10 @@ function renderChart() {
   }
   layer.append(svg('line',{x1:xRef,y1:top,x2:xRef,y2:top+height,class:'reference-line'}));
   layer.append(svg('line',{x1:left,y1:yRef,x2:left+width,y2:yRef,class:'reference-line'}));
-  layer.append(svg('text',{x:left+14,y:top+25,class:'quadrant-label'},'较低收入 · 较高占比'));
-  layer.append(svg('text',{x:left+width-14,y:top+25,'text-anchor':'end',class:'quadrant-label'},'较高收入 · 较高占比'));
-  layer.append(svg('text',{x:left+14,y:top+height-13,class:'quadrant-label'},'较低收入 · 较低占比'));
-  layer.append(svg('text',{x:left+width-14,y:top+height-13,'text-anchor':'end',class:'quadrant-label'},'较高收入 · 较低占比'));
+  layer.append(svg('text',{x:left+14,y:top+25,class:'quadrant-label'},'咬牙硬撑'));
+  layer.append(svg('text',{x:left+width-14,y:top+25,'text-anchor':'end',class:'quadrant-label'},'给房东打工'));
+  layer.append(svg('text',{x:left+14,y:top+height-13,class:'quadrant-label'},'小城安逸'));
+  layer.append(svg('text',{x:left+width-14,y:top+height-13,'text-anchor':'end',class:'quadrant-label'},'闷声发财'));
   layer.append(svg('text',{x:18,y:top+height/2,transform:`rotate(-90 18 ${top+height/2})`,'text-anchor':'middle',class:'axis-title'},'样本套租金 / 人均月收入'));
   // Add labels only where space allows; every city remains available in the list.
   const boxes = [];
@@ -115,15 +118,16 @@ function renderDetail(city) {
     const hero = document.createElement('div'); hero.className='detail-ratio';
     const label=document.createElement('span'); label.textContent='样本租金 / 人均月收入';
     const value=document.createElement('strong'); value.textContent=`${share(city).toFixed(1)}%`;
-    hero.append(label,value); detail.append(hero);
+    const tag=document.createElement('span'); tag.className='detail-quadrant'; tag.textContent=`图示分组 · ${quadrantLabels[group(city)]}`;
+    hero.append(label,value,tag); detail.append(hero);
   }
   const dl=document.createElement('dl'); dl.className='detail-stats';
-  const values=[['人均年可支配收入', `${annualMoney.format(city.income)} 元`],['折算人均月收入', `${money.format(city.income/12)} 元`],[area === 'small' ? '30㎡以下平均套租金' : '30–60㎡平均套租金',rent === null ? '暂无数据' : `${money.format(rent)} 元 / 月`],['2024 年 GDP（排序参考）', `${gdpMoney.format(city.gdp)} 亿元`]];
+  const values=[['人均年可支配收入', `${annualMoney.format(city.income)} 元`],['折算人均月收入', `${money.format(city.income/12)} 元`],[`${areaLabels[area]}平均套租金`,rent === null ? '暂无数据' : `${money.format(rent)} 元 / 月`],['2024 年 GDP（排序参考）', `${gdpMoney.format(city.gdp)} 亿元`]];
   values.forEach(([name,value])=>{const row=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=name;dd.textContent=value;row.append(dt,dd);dl.append(row);});
   detail.append(dl);
   if(city.note){const note=document.createElement('p');note.className='detail-note';note.textContent=city.note;detail.append(note);}
   const links=document.createElement('div'); links.className='detail-links';
-  [['收入来源',city.source[0],city.source[1]],['租金来源','中指研究院：2024 年 12 月租赁报告',rentSource],['GDP 来源',city.gdpSource[0],city.gdpSource[1]]].forEach(([kind,label,url])=>{const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=`${kind}：${label} ↗`;links.append(a);});
+  [['收入来源',city.source[0],city.source[1]],[rent === null ? '租金报告覆盖说明' : '租金来源','中指研究院：2024 年 12 月租赁报告',rentSource],['GDP 来源',city.gdpSource[0],city.gdpSource[1]]].forEach(([kind,label,url])=>{const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=`${kind}：${label} ↗`;links.append(a);});
   detail.append(links);
 }
 function renderList(filtered) {
@@ -145,13 +149,13 @@ function renderList(filtered) {
   empty.hidden=filtered.length>0;
 }
 function renderLegend(available) {
-  const labels=['较低收入 · 较低占比','较高收入 · 较低占比','较低收入 · 较高占比','较高收入 · 较高占比'];
+  const labels=['小城安逸 · 收入≤5000 / 占比≤15%','闷声发财 · 收入>5000 / 占比≤15%','咬牙硬撑 · 收入≤5000 / 占比>15%','给房东打工 · 收入>5000 / 占比>15%'];
   legend.replaceChildren(); labels.forEach((label,i)=>{const item=document.createElement('div');item.className=`legend-item legend-${i}`;const name=document.createElement('span');name.textContent=label;const amount=document.createElement('strong');amount.textContent=`${available.filter(c=>group(c)===i).length} 城`;item.append(name,amount);legend.append(item);});
 }
 function render() {
   const filtered=cities.filter(matches), available=filtered.filter(city=>city.rents[area]!==null);
   count.textContent=`${query || category !== 'all' ? '当前筛选' : '已收录'} ${filtered.length} 城 · ${available.length} 城可绘制${filtered.length-available.length ? ` · ${filtered.length-available.length} 城暂无该档租金` : ''}`;
-  areaTitle.textContent=area==='small'?'30㎡以下住宅':'30–60㎡住宅';
+  areaTitle.textContent=`${areaLabels[area]}住宅`;
   renderChart();renderList(filtered);renderDetail(cities.find(city=>city.name===selected && matches(city)));renderLegend(available);
 }
 function updateSelection() {

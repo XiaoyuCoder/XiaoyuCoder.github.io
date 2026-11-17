@@ -35,7 +35,14 @@ const sources = {
   taiyuan: ['太原市 2024 年统计公报（Maptable 收录）', 'https://maptable.com/tjgb/2024/%E5%B1%B1%E8%A5%BF%E7%9C%81/%E5%A4%AA%E5%8E%9F%E5%B8%82/report/shan-xi-sheng-tai-yuan-shi-2024-nian-guo-min-jing-ji-he-she-hui-fa-zhan-tong-ji-gong-bao-2'],
   xuzhou: ['江苏省人民政府：徐州市 2024 年经济运行情况', 'https://www.jiangsu.gov.cn/art/2025/2/5/art_84324_11490817.html'],
   beihai: ['广西壮族自治区海洋局：北海市 2024 年经济数据', 'https://hyj.gxzf.gov.cn/zwgk_66846/tzgg/P020250610350347659091.pdf'],
-  lasa: ['拉萨市人民政府：2024 年经济运行情况', 'https://www.lasa.gov.cn/lasa/lsyw/202504/25374ef786714192bc3fd915b4e3cbd7.shtml']
+  lasa: ['拉萨市人民政府：2024 年经济运行情况', 'https://www.lasa.gov.cn/lasa/lsyw/202504/25374ef786714192bc3fd915b4e3cbd7.shtml'],
+  zhejiang: ['浙江各市 2024 年经济指标汇编', 'https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web2518/site/attach/0/45bff06bcf2b4abaad87825b3a4bdc51.pdf'],
+  yantai: ['烟台市 2024 年统计公报', 'https://www.yantai.gov.cn/art/2025/4/9/art_43176_3248210.html'],
+  luoyang: ['洛阳市 2024 年统计公报', 'https://www.ly.gov.cn/2025/04-30/565379.html'],
+  zhuzhou: ['株洲市 2024 年统计公报', 'https://tjj.hunan.gov.cn/hntj/tjfx/tjgb/szgb/zzs_1/202504/t20250408_33633598.html'],
+  hengyang: ['衡阳市 2024 年统计公报', 'https://www.hengyang.gov.cn/hystjj/tjgb/20250402/i3623481.html'],
+  nanyang: ['南阳市 2024 年统计公报', 'https://tj.nanyang.gov.cn/2025/04-11/1032596.html'],
+  zhanjiang: ['湛江市 2024 年统计公报', 'https://www.zhanjiang.gov.cn/zjsfw/bmdh/tjxxw/zwgk/tjsjzl/content/mpost_2026439.html']
 };
 // name, annual income, under 30 m², 30–60 m², income source key
 const rows = [
@@ -64,8 +71,27 @@ const rows = [
  ['石家庄',49990,520,1084,'shijiazhuang'], ['惠州',54572,null,1116,'huizhou'],
  ['呼和浩特',59540,null,1302,'huhehaote'], ['太原',47930,518,907,'taiyuan'],
  ['徐州',46936,null,956,'xuzhou'], ['北海',45542,null,699,'beihai'],
- ['拉萨',58171,null,null,'lasa']
+ ['拉萨',58171,null,null,'lasa'],
+ ['金华',76866,null,null,'zhejiang'], ['湖州',77551,null,null,'zhejiang'],
+ ['台州',77582,null,null,'zhejiang'], ['舟山',79416,null,null,'zhejiang'],
+ ['衢州',63556,null,null,'zhejiang'], ['丽水',61629,null,null,'zhejiang'],
+ ['烟台',62060,null,null,'yantai'], ['洛阳',47922,null,null,'luoyang'],
+ ['株洲',59167,null,null,'zhuzhou'], ['衡阳',47927,null,null,'hengyang'],
+ ['南阳',41924,null,null,'nanyang'], ['湛江',38452,null,null,'zhanjiang']
 ];
+// 表 6 的另外三个面积档；无值表示报告未公布或城市未覆盖。
+const largerRents = {
+ 深圳:[5911,8378,22187], 北京:[5435,7864,23118], 上海:[5165,8227,21081], 杭州:[3931,5135,10325], 广州:[3749,4671,11878],
+ 厦门:[3145,4213,8096], 三亚:[3036,4378,11286], 珠海:[2890,3560,7115], 南京:[2808,3589,8135], 苏州:[2691,3489,6682],
+ 福州:[2527,3316,5573], 成都:[2460,3154,7104], 宁波:[2437,3452,5715], 海口:[2283,2907,4954], 天津:[2124,2689,6782],
+ 武汉:[2095,2623,5738], 佛山:[2078,2445,4246], 西安:[2076,2548,4948], 长沙:[2073,2679,4652], 大连:[2070,3052,6864],
+ 东莞:[2057,2611,4418], 无锡:[2030,2602,4841], 合肥:[2021,2579,5008], 青岛:[2009,2566,6783], 温州:[1980,2714,4312],
+ 泉州:[1958,2473,4453], 济南:[1875,2381,4156], 嘉兴:[1839,2362,null], 常州:[1836,2393,4334], 重庆:[1835,2476,5069],
+ 南宁:[1834,2347,4532], 绍兴:[1822,2085,3436], 乌鲁木齐:[1775,2347,4572], 昆明:[1736,2179,3898], 郑州:[1689,2063,3928],
+ 西宁:[1674,2073,null], 兰州:[1663,2265,4525], 哈尔滨:[1639,2322,4682], 沈阳:[1626,2267,4890], 南昌:[1612,2271,3899],
+ 贵阳:[1608,2205,3607], 石家庄:[1566,2002,3654], 长春:[1557,2174,4465], 南通:[1556,2051,3509], 惠州:[1544,1984,3299],
+ 呼和浩特:[1380,1808,3436], 太原:[1361,1939,3916], 徐州:[1352,1739,3094], 银川:[1060,1432,3000], 北海:[994,1167,null]
+};
 // 2024 年 GDP 初步核算数（亿元）：前 50 名依据各地统计局数据汇编；其他城市见下方各地资料。
 export const gdpRankingSource = ['2024 年城市 GDP 前 50 名汇编（聚汇数据，原始数据来自各市统计局）', 'https://gdp.gotohui.com/topic-4621'];
 const gdp = {
@@ -77,7 +103,8 @@ const gdp = {
  绍兴:8368.6, 昆明:8275.22, 石家庄:8203.4, 南昌:7800.37, 长春:7632.19, 嘉兴:7569.53,
  惠州:6136.39, 哈尔滨:6016.3, 南宁:5995.36, 贵阳:5777.41, 太原:5418.87, 乌鲁木齐:4502.16,
  珠海:4479.06, 呼和浩特:4107.08, 兰州:3742.3, 银川:2939.53, 海口:2470.63, 北海:1888.04,
- 西宁:1862.09, 三亚:1004.70, 拉萨:990.04
+ 西宁:1862.09, 三亚:1004.70, 拉萨:990.04, 金华:6925.5, 湖州:4213.4, 台州:6656.4, 舟山:2226.2, 衢州:2262.8, 丽水:2181.2,
+ 烟台:10782.83, 洛阳:5818.6, 株洲:3902.4, 衡阳:4491.69, 南阳:4879.08, 湛江:3839.93
 };
 const capitals = new Set(['广州','成都','杭州','武汉','南京','长沙','郑州','福州','济南','合肥','西安','沈阳','昆明','石家庄','南昌','长春','哈尔滨','南宁','贵阳','太原','乌鲁木齐','呼和浩特','兰州','银川','海口','西宁','拉萨']);
 const municipalities = new Set(['北京','上海','天津','重庆']);
@@ -89,11 +116,13 @@ const gdpSources = {
  兰州: ['兰州市 2024 年统计公报', 'https://manage.gsei.com.cn/html/1288/2025-10-13/content-626780.html'],
  银川: sources.yinchuan, 海口: sources.haikou, 北海: sources.beihai,
  西宁: ['西宁市 2024 年统计公报（西宁晚报刊载）', 'https://epaper.tibet3.com/xhdsb/html/202501/26/26a279a6-6e67-4d44-8dc4-3282f1631198.pdf'],
- 三亚: sources.sanya, 拉萨: sources.lasa
+ 三亚: sources.sanya, 拉萨: sources.lasa,
+ 金华:sources.zhejiang, 湖州:sources.zhejiang, 台州:sources.zhejiang, 舟山:sources.zhejiang, 衢州:sources.zhejiang, 丽水:sources.zhejiang,
+ 烟台:sources.yantai, 洛阳:sources.luoyang, 株洲:sources.zhuzhou, 衡阳:sources.hengyang, 南阳:sources.nanyang, 湛江:sources.zhanjiang
 };
 export const cities = rows.map(([name, income, small, medium, key]) => ({
- name, income, rents: {small, medium}, source: sources[key], gdp: gdp[name], gdpSource: gdpSources[name] || gdpRankingSource,
+ name, income, rents: {small, medium, large: largerRents[name]?.[0] ?? null, family: largerRents[name]?.[1] ?? null, extra: largerRents[name]?.[2] ?? null}, source: sources[key], gdp: gdp[name], gdpSource: gdpSources[name] || gdpRankingSource,
  category: municipalities.has(name) ? 'municipal' : capitals.has(name) ? 'capital' : 'other',
  note: name === '重庆' ? '租金覆盖主城区，收入覆盖全市城镇居民，地域范围不同。' : '',
- rentMissing: name === '拉萨' ? '中指研究院这份 50 城报告未覆盖拉萨，暂无可比租金数据。' : '该面积档的租金因样本较少未公布，可切换至 30–60㎡查看。'
+ rentMissing: !largerRents[name] ? '该城市不在中指研究院 50 城报告的覆盖范围内，暂无可比租金数据。' : '该面积档的租金因样本较少未公布，可切换面积查看。'
 }));

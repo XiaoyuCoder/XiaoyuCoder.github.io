@@ -137,6 +137,9 @@
 .detail-kicker { color:#4c79a5; font-size:10px; }.city-detail h2 { color:#143b6a; }
 .detail-intro, .detail-ratio span, .detail-stats dt, .detail-note { color:#527291; font-size:11px; }
 .detail-ratio strong { color:#1558b4; }.detail-stats dd { color:#163958; }
+.detail-ratio .detail-quadrant { align-self:flex-start; margin-top:5px; padding:4px 8px; border-radius:4px; background:#dceaff; color:#1b548e; font-size:11px; }
+.reading-list { display:flex; flex-direction:column; gap:10px; margin-top:26px; padding:20px; border:1px solid #cbdff3; border-radius:7px; background:#f4f9ff; }
+.reading-list h3 { color:#143b6a; font-size:15px; }.reading-list p { color:#526f89; font-size:12px; line-height:1.8; }.reading-list a { color:#1458b4; font-size:12px; text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
 .detail-links a, .source-line a { color:#1458b4; font-size:11px; }
 .city-list-head { padding-top:42px; }.city-list-head h2 { font-size:23px; }
 .city-list-head p:last-child { margin-top:5px; color:#58738e; font-size:12px; }
