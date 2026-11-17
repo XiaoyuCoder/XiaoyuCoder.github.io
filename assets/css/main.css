@@ -127,6 +127,11 @@ a:focus-visible, button:focus-visible, pre:focus-visible { outline: 2px solid va
 .scholarship-highlight h3 { font-weight: 550; font-size: 22px; letter-spacing: 1px; margin-top: 9px; }
 .scholarship-highlight p { font-family: var(--mono); color: #6485a8; font-size: 9px; margin-top: 12px; white-space: nowrap; }
 .highlight-caption { display: block; margin-top: 23px; padding-top: 15px; border-top: 1px solid #cddff2; font-size: 11px; color: #58789a; letter-spacing: .2px; }
+.highlight-honors { margin-top: 25px; padding-top: 20px; border-top: 1px solid #cddff2; }
+.highlight-honors h4 { margin: 7px 0 12px; font-size: 14px; font-weight: 550; }
+.highlight-honors li { padding: 7px 0; font-size: 12px; color: #365e84; line-height: 1.6; }
+.highlight-honors li + li { border-top: 1px solid #d9e8f6; }
+.highlight-honors li span { display: block; font: 10px/1.6 var(--mono); color: #718da8; }
 .honors-list > li { display: flex; justify-content: space-between; align-items: start; gap: 18px; padding: 17px 0; border-bottom: 1px solid var(--line); }
 .honors-list > li:first-child { padding-top: 0; }
 .honors-list h3 { font-size: 13px; font-weight: 500; line-height: 1.6; }
