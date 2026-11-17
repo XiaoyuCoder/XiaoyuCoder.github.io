@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="财富自由计算器：按月开销测算目标资产，或从已有资产反推月度开销，支持调整回报率、通胀率及各项预留。">
+  <link rel="canonical" href="https://xiaoyucoder.github.io/tools/financial-freedom/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <script src="/assets/js/navigation.js" defer></script>
+  <script src="/assets/js/financial-freedom.js?v=20261030-presets-5" type="module"></script>
+  <title>财富自由计算器 | 王宇的小工具</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到主要内容</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="wordmark" href="/" aria-label="王宇，返回首页"><span class="brand-mark" aria-hidden="true">W<span>.</span></span><span>王宇 <span class="wordmark-en">/ Yu Wang</span></span></a>
+    <button class="menu-toggle" aria-label="打开导航" aria-controls="site-nav" aria-expanded="false"><span></span><span></span></button>
+    <nav id="site-nav" class="site-nav" aria-label="主导航"><a href="/#about">关于</a><a href="/#education">教育背景</a><a href="/#publications">学术论文</a><a href="/#honors">荣誉奖项</a><a href="/tools/" aria-current="page">小工具</a><a class="nav-contact" href="/#contact">联系我 <span aria-hidden="true">↗</span></a></nav>
+  </div></header>
+
+  <main id="main" class="page-shell calculator-page">
+    <nav class="breadcrumbs" aria-label="面包屑导航"><a href="/tools/">小工具</a><span aria-hidden="true">/</span><span aria-current="page">财富自由计算器</span></nav>
+    <div class="calculator-heading"><div><p class="eyebrow">FINANCIAL FREEDOM CALCULATOR</p><h1>财富自由计算器<span>.</span></h1><p>按你的生活方式，算一算自己的目标数字。</p></div><span class="model-badge">当前乘数 <strong id="badge-multiplier">480</strong><span id="badge-rate">实际回报率 2.5%</span></span></div>
+    <noscript><p class="model-notice">请开启 JavaScript 后使用计算器。</p></noscript>
+
+    <div class="calculator-tabs" role="tablist" aria-label="计算器功能">
+      <button id="tab-target" role="tab" aria-selected="true" aria-controls="panel-target" tabindex="0" type="button">目标测算</button>
+      <button id="tab-reverse" role="tab" aria-selected="false" aria-controls="panel-reverse" tabindex="-1" type="button">资产反推</button>
+      <button id="tab-settings" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1" type="button">参数与公式</button>
+      <button id="tab-examples" role="tab" aria-selected="false" aria-controls="panel-examples" tabindex="-1" type="button">示例场景</button>
+    </div>
+
+    <section id="panel-target" class="calculator-panel calc-columns" role="tabpanel" aria-labelledby="tab-target" tabindex="0">
+      <form id="target-form" class="calculator-form">
+        <div class="form-section-title"><span class="section-number">01 / YOUR LIFESTYLE</span><h2>你期望怎样生活？</h2><p>日常开销与单独预留的项目分开填写，避免重复计算。</p></div>
+        <div class="preset-row" aria-label="快速填入示例"><button type="button" data-preset="single">单人</button><button type="button" data-preset="couple">双人</button><button type="button" data-preset="family">一孩家庭</button><button type="button" data-preset="family2">二孩家庭</button><button type="button" data-preset="family3">三孩家庭</button></div>
+        <div class="field"><label for="monthly-expense">期望每月日常开销</label><div class="input-unit"><input id="monthly-expense" name="monthlyExpense" type="number" inputmode="decimal" min="0" max="1000000000" step="any" value="5000" required><span>元 / 月</span></div><small>吃穿、交通、娱乐等；租房开销可计入此处。</small></div>
+        <label class="children-switch" for="include-children"><span><strong>考虑育儿预留</strong><small>开启后，将育儿总预留加入目标资产。</small></span><input id="include-children" type="checkbox"></label>
+        <fieldset id="target-children" class="field-grid children-fields" hidden disabled>
+          <legend class="visually-hidden">育儿预留</legend>
+          <div class="field"><label for="target-child-count">孩子数量</label><div class="input-unit"><input id="target-child-count" name="childCount" type="number" inputmode="numeric" min="1" max="12" step="1" value="1" required><span>个</span></div></div>
+          <div class="field"><label for="target-child-cost">每孩育儿总预留</label><div class="input-unit"><input id="target-child-cost" name="childCost" type="number" inputmode="decimal" min="0" max="1000000000000" step="any" value="580000" required><span>元 / 孩</span></div></div>
+        </fieldset>
+        <div class="field-grid">
+          <div class="field"><label for="target-health">医疗健康预留</label><div class="input-unit"><input id="target-health" name="healthReserve" type="number" inputmode="decimal" min="0" max="1000000000000" step="any" value="300000" required><span>元</span></div></div>
+          <div class="field"><label for="target-housing">住房及大额支出预留</label><div class="input-unit"><input id="target-housing" name="housingReserve" type="number" inputmode="decimal" min="0" max="1000000000000" step="any" value="0" required><span>元</span></div></div>
+        </div>
+        <p class="field-footnote">预留为一次性独立预算，不参与日常开销的收益测算。</p>
+        <button class="button button-primary calculate-button" type="submit">计算目标资产 <span aria-hidden="true">→</span></button>
+      </form>
+      <aside class="calculation-result" aria-labelledby="target-result-heading">
+        <span class="section-number">YOUR TARGET</span><h2 id="target-result-heading">预计需要的目标资产</h2>
+        <div class="result-summary" aria-live="polite" aria-atomic="true"><output id="target-total">—</output><span id="target-unit" class="result-unit">万元</span></div>
+        <p id="target-explanation" class="result-explanation"></p>
+        <div id="target-breakdown">
+          <div class="allocation-bar" role="img" aria-label="目标资产构成"><span data-allocation="living"></span><span data-allocation="children"></span><span data-allocation="health"></span><span data-allocation="housing"></span></div>
+          <dl class="result-breakdown"><div><dt><i class="allocation-dot living"></i>日常开销本金</dt><dd id="target-living">—</dd></div><div><dt><i class="allocation-dot children"></i>育儿预留</dt><dd id="target-children-value">—</dd></div><div><dt><i class="allocation-dot health"></i>医疗健康预留</dt><dd id="target-health-value">—</dd></div><div><dt><i class="allocation-dot housing"></i>住房及大额支出</dt><dd id="target-housing-value">—</dd></div></dl>
+          <p class="calculation-assumption" data-rate-summary></p>
+        </div>
+        <button class="result-settings-link" type="button" data-open-panel="settings">调整回报率与通胀率 <span aria-hidden="true">↗</span></button>
+      </aside>
+    </section>
+
+    <section id="panel-reverse" class="calculator-panel calc-columns" role="tabpanel" aria-labelledby="tab-reverse" tabindex="0" hidden>
+      <form id="reverse-form" class="calculator-form">
+        <div class="form-section-title"><span class="section-number">02 / YOUR ASSETS</span><h2>已有的钱，能支持多少开销？</h2><p>先扣除独立预留，再估算剩余本金对应的每月开销。</p></div>
+        <div class="field"><label for="available-assets">已有可用资产</label><div class="input-unit"><input id="available-assets" name="assets" type="number" inputmode="decimal" min="0" max="1000000000000" step="any" value="6000000" required><span>元</span></div><small>请填写可用于本次测算的资产，不重复计入自住房等非可用资产。</small></div>
+        <div class="field-grid">
+          <div class="field"><label for="reverse-child-count">孩子数量</label><div class="input-unit"><input id="reverse-child-count" name="childCount" type="number" inputmode="numeric" min="0" max="12" step="1" value="1" required><span>个</span></div></div>
+          <div class="field"><label for="reverse-child-cost">每孩育儿总预留</label><div class="input-unit"><input id="reverse-child-cost" name="childCost" type="number" inputmode="decimal" min="0" max="1000000000000" step="any" value="700000" required><span>元 / 孩</span></div></div>
+          <div class="field"><label for="reverse-health">医疗健康预留</label><div class="input-unit"><input id="reverse-health" name="healthReserve" type="number" inputmode="decimal" min="0" max="1000000000000" step="any" value="500000" required><span>元</span></div></div>
+          <div class="field"><label for="reverse-housing">住房及大额支出预留</label><div class="input-unit"><input id="reverse-housing" name="housingReserve" type="number" inputmode="decimal" min="0" max="1000000000000" step="any" value="0" required><span>元</span></div></div>
+        </div>
+        <button class="button button-primary calculate-button" type="submit">反推月度开销 <span aria-hidden="true">→</span></button>
+      </form>
+      <aside class="calculation-result" aria-labelledby="reverse-result-heading">
+        <span class="section-number">MONTHLY SPENDING</span><h2 id="reverse-result-heading">模型估算的月度开销</h2>
+        <div class="result-summary" aria-live="polite" aria-atomic="true"><output id="reverse-monthly">—</output><span class="result-unit">元 / 月</span></div>
+        <p id="reverse-explanation" class="result-explanation"></p>
+        <div id="reverse-breakdown"><dl class="result-breakdown"><div><dt>已有可用资产</dt><dd id="reverse-assets-value">—</dd></div><div><dt>各项预留合计</dt><dd id="reverse-reserve-value">—</dd></div><div class="breakdown-emphasis"><dt>用于日常开销的本金</dt><dd id="reverse-remaining-value">—</dd></div></dl><p class="calculation-assumption" data-rate-summary></p></div>
+        <button class="result-settings-link" type="button" data-open-panel="settings">调整回报率与通胀率 <span aria-hidden="true">↗</span></button>
+      </aside>
+    </section>
+
+    <section id="panel-settings" class="calculator-panel settings-panel" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden>
+      <div class="form-section-title"><span class="section-number">03 / ASSUMPTIONS</span><h2>用你自己的假设来计算</h2><p>修改参数后，目标测算、资产反推和换算示例同步更新。</p></div>
+      <form id="settings-form" class="rate-settings">
+        <div class="rate-field"><label for="nominal-rate">名义年回报率</label><div class="input-unit"><input id="nominal-rate" type="number" inputmode="decimal" min="-20" max="50" step="any" value="4.5" required><span>%</span></div><input class="rate-slider" id="nominal-slider" type="range" min="-20" max="50" step="0.1" value="4.5" aria-label="调整名义年回报率"></div>
+        <div class="rate-field"><label for="inflation-rate">长期通胀率</label><div class="input-unit"><input id="inflation-rate" type="number" inputmode="decimal" min="-20" max="50" step="any" value="2" required><span>%</span></div><input class="rate-slider" id="inflation-slider" type="range" min="-20" max="50" step="0.1" value="2" aria-label="调整长期通胀率"></div>
+      </form>
+      <div class="rate-summary"><div><span>实际年回报率（近似）</span><strong id="real-rate-value">2.50%</strong></div><div><span>财富自由乘数</span><strong id="multiplier-value">480</strong></div><button id="reset-rates" class="text-link" type="button">恢复默认参数 ↺</button></div>
+      <p id="rate-error" class="model-notice" role="status" hidden></p>
+      <div class="formula-columns">
+        <div class="formula-card"><h3>计算口径</h3><p class="formula-line">实际回报率 r ≈ 名义回报率 − 通胀率</p><p class="formula-line">乘数 = 12 ÷ r</p><p class="formula-line">目标资产 = 月开销 × 乘数 + 各项预留</p><p class="formula-line">月度开销 =（已有资产 − 各项预留）÷ 乘数</p><p class="formula-caption">r 以小数代入：2.5% = 0.025，所以 12 ÷ 0.025 = 480。预留包括育儿、医疗健康、住房及其他大额支出。</p></div>
+        <div class="formula-card"><h3>直观换算 <span>不含独立预留</span></h3><dl class="conversion-list"><div><dt>每月开销 5,000 元</dt><dd id="conversion-5000">—</dd></div><div><dt>每月开销 10,000 元</dt><dd id="conversion-10000">—</dd></div><div><dt>每月开销 20,000 元</dt><dd id="conversion-20000">—</dd></div></dl><p class="formula-caption">这里的各项回报率和金额均为可调的情景假设，不是市场统计或收益预测。</p></div>
+      </div>
+    </section>
+
+    <section id="panel-examples" class="calculator-panel" role="tabpanel" aria-labelledby="tab-examples" tabindex="0" hidden>
+      <div class="form-section-title"><span class="section-number">04 / TRY A SCENARIO</span><h2>从一个示例开始</h2><p>点击场景填入示例数据；金额只是演示，实际预算请按个人情况调整。</p></div>
+      <div class="example-grid">
+        <button class="example-card" type="button" data-preset="single"><span class="section-number">01 / SINGLE</span><h3>单人</h3><p>日常开销 2,990 元 / 月，独立预留为 0。</p><span class="example-card-action">填入目标测算 <span aria-hidden="true">→</span></span></button>
+        <button class="example-card" type="button" data-preset="couple"><span class="section-number">02 / COUPLE</span><h3>双人</h3><p>日常开销 5,980 元 / 月，独立预留为 0。</p><span class="example-card-action">填入目标测算 <span aria-hidden="true">→</span></span></button>
+        <button class="example-card" type="button" data-preset="family"><span class="section-number">03 / FAMILY</span><h3>一孩家庭</h3><p>开销 10,000 元 / 月，育儿预留 70 万元，健康预留 50 万元。</p><span class="example-card-action">填入目标测算 <span aria-hidden="true">→</span></span></button>
+        <button class="example-card" type="button" data-preset="family2"><span class="section-number">04 / TWO CHILDREN</span><h3>二孩家庭</h3><p>开销 10,000 元 / 月，2 个孩子共预留 140 万元，健康预留 50 万元。</p><span class="example-card-action">填入目标测算 <span aria-hidden="true">→</span></span></button>
+        <button class="example-card" type="button" data-preset="family3"><span class="section-number">05 / THREE CHILDREN</span><h3>三孩家庭</h3><p>开销 10,000 元 / 月，3 个孩子共预留 210 万元，健康预留 50 万元。</p><span class="example-card-action">填入目标测算 <span aria-hidden="true">→</span></span></button>
+        <button class="example-card" type="button" data-preset="six-million"><span class="section-number">06 / REVERSE</span><h3>600 万元反推</h3><p>已有 600 万元，育儿预留 70 万元，健康预留 50 万元。</p><span class="example-card-action">填入资产反推 <span aria-hidden="true">→</span></span></button>
+      </div>
+      <p class="examples-note">示例沿用当前回报率与通胀率；如需“480 法则”口径，可在参数页恢复默认值。</p>
+    </section>
+
+    <p class="calculator-note">模型采用固定回报与通胀假设，未模拟收益波动、税费及突发支出。结果用于情景测算，不代表收益承诺。所有输入仅在当前浏览器内计算。</p>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><span>© 2026 王宇 · Yu Wang</span><a href="/tools/">返回小工具 <span aria-hidden="true">↗</span></a></div></footer>
+</body>
+</html>

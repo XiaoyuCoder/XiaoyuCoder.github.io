@@ -1,160 +1,138 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Coder Xiaoyu 的个人博客 - 加入ios club 实现人生理想</title><meta name="author" content="Coder Xiaoyu"><meta name="copyright" content="Coder Xiaoyu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
-<meta property="og:title" content="Coder Xiaoyu 的个人博客">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Coder Xiaoyu 的个人博客">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
-<meta property="article:author" content="Coder Xiaoyu">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
-  copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: 'days',
-  dateSuffix: {
-    just: 'Just',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Coder Xiaoyu 的个人博客',
-  isPost: false,
-  isHome: true,
-  isHighlightShrink: true,
-  isToc: false,
-  postUpdate: '2023-09-13 12:24:30'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="王宇，中国人民大学信息学院计算机科学与技术专业博士研究生在读，本科毕业于中南大学数据科学与大数据技术专业。关注大语言模型、图神经网络和 AI for Science。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="王宇 Yu Wang | 中国人民大学">
+  <meta property="og:description" content="中国人民大学信息学院计算机科学与技术专业博士研究生在读 · 大语言模型 · 图神经网络 · AI for Science">
+  <meta property="og:url" content="https://xiaoyucoder.github.io/">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://xiaoyucoder.github.io/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/navigation.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <title>王宇 Yu Wang | 中国人民大学</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到主要内容</a>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="#" aria-label="王宇，返回首页"><span class="brand-mark" aria-hidden="true">W<span>.</span></span><span>王宇 <span class="wordmark-en">/ Yu Wang</span></span></a>
+      <button class="menu-toggle" aria-label="打开导航" aria-controls="site-nav" aria-expanded="false"><span></span><span></span></button>
+      <nav id="site-nav" class="site-nav" aria-label="主导航">
+        <a href="#about" aria-current="location">关于</a>
+        <a href="#education">教育背景</a>
+        <a href="#publications">学术论文</a>
+        <a href="#honors">荣誉奖项</a>
+        <a href="/tools/">小工具</a>
+        <a class="nav-contact" href="#contact">联系我 <svg class="icon"><use href="#icon-external"/></svg></a>
+      </nav>
+    </div>
+  </header>
 
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
+  <main id="main" class="page-shell">
+    <section id="about" class="hero" aria-labelledby="intro-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> RENMIN UNIVERSITY OF CHINA</p>
+        <h1 id="intro-title">王宇<span class="name-en" lang="en">Yu Wang<span class="name-period">.</span></span></h1>
+        <p class="hero-role">中国人民大学 · 信息学院<br>计算机科学与技术专业<br><strong>博士研究生在读</strong></p>
+        <p class="hero-intro">本科毕业于中南大学数据科学与大数据技术专业。<br class="desktop-break">关注大语言模型、图神经网络和 AI for Science，<br class="desktop-break">探索数据驱动的智能方法及其科学应用。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="mailto:wangyu_2026@ruc.edu.cn">邮件联系 <svg class="icon"><use href="#icon-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
 
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
+    <div class="research-strip" aria-label="研究兴趣">
+      <span class="strip-label">研究兴趣 <span>RESEARCH INTERESTS</span></span>
+      <ul><li>大语言模型</li><li>图神经网络</li><li>AI for Science</li></ul>
+    </div>
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Coder Xiaoyu 的个人博客"><span class="site-name">Coder Xiaoyu 的个人博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Coder Xiaoyu 的个人博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/XiaoyuCoder" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1303346724@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/09/13/index/" title="加入iOSClub 实现人生理想">加入iOSClub 实现人生理想</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-09-12T16:00:00.000Z" title="Created 2023-09-13 00:00:00">2023-09-13</time></span></div><div class="content"></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Coder Xiaoyu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/XiaoyuCoder" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1303346724@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/13/index/" title="加入iOSClub 实现人生理想">加入iOSClub 实现人生理想</a><time datetime="2023-09-12T16:00:00.000Z" title="Created 2023-09-13 00:00:00">2023-09-13</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-09-12T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-09-13T04:24:30.883Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Coder Xiaoyu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+    <section id="education" class="content-section" aria-labelledby="education-title">
+      <div class="section-heading"><div><span class="section-number">01 / EDUCATION</span><h2 id="education-title">教育背景</h2></div><span class="section-aside">求知，是一段持续的旅程。</span></div>
+      <div class="education-list">
+        <article class="education-item current-education">
+          <div class="education-date"><span>2026.09 — 至今</span><span class="current-tag">在读</span></div>
+          <div class="education-detail"><h3>中国人民大学 <span lang="en">Renmin University of China</span></h3><p>信息学院 <span class="inline-separator">/</span> 计算机科学与技术</p><p class="degree">博士研究生 · 直博</p></div>
+          <span class="degree-mark" aria-hidden="true">Ph.D.</span>
+        </article>
+        <article class="education-item">
+          <div class="education-date"><span>2022.09 — 2026.06</span></div>
+          <div class="education-detail"><h3>中南大学 <span lang="en">Central South University</span></h3><p>计算机学院 <span class="inline-separator">/</span> 数据科学与大数据技术</p><p class="degree">本科</p></div>
+          <span class="degree-mark" aria-hidden="true">Bachelor</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications" class="content-section publications-section" aria-labelledby="publications-title">
+      <div class="section-heading"><div><span class="section-number">02 / PUBLICATIONS</span><h2 id="publications-title">学术论文<span class="heading-count">01</span></h2></div><span class="section-aside">从问题出发，让研究落地。</span></div>
+      <article class="publication">
+        <div class="paper-art" aria-hidden="true">
+          <span class="paper-art-label">TEMPORAL<br>CROSS-ATTENTION</span>
+          <svg viewBox="0 0 180 125" fill="none"><g stroke="currentColor" stroke-width="1"><path d="M24 28 84 62 153 23M24 28l69 70 60-75M22 96l62-34 71 38M22 96l71 2M84 62l9 36M153 23l2 77M24 28l-2 68"/><path d="M24 28h129M22 96l131-73" opacity=".3"/></g><g fill="var(--paper-node)"><circle cx="24" cy="28" r="6"/><circle cx="22" cy="96" r="5"/><circle cx="84" cy="62" r="8"/><circle cx="93" cy="98" r="5"/><circle cx="153" cy="23" r="5"/><circle cx="155" cy="100" r="6"/></g></svg>
+          <span class="paper-art-footer">TCAGRN <span>2026</span></span>
+        </div>
+        <div class="paper-content">
+          <div class="paper-meta"><span class="venue-badge">BIBM 2026</span><span class="paper-type">CONFERENCE PAPER</span></div>
+          <h3 lang="en">TCAGRN: Temporal Cross-Attention for Gene Regulatory Network Inference from Pseudotime-Ordered Single-Cell Transcriptomic Data</h3>
+          <p class="paper-authors" lang="en">Xingyuan Shi, <strong>Yu Wang</strong>, Ziyang Miao, Yanping Zeng, Min Li, and Ruiqing Zheng</p>
+          <div class="paper-bottom"><div class="paper-topics"><span>基因调控网络</span><span>单细胞转录组</span></div><button class="citation-trigger text-link" type="button" hidden>引用 <span lang="en">BibTeX</span> <svg class="icon small-icon"><use href="#icon-external"/></svg></button></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="honors" class="content-section" aria-labelledby="honors-title">
+      <div class="section-heading"><div><span class="section-number">03 / HONORS &amp; AWARDS</span><h2 id="honors-title">荣誉奖项</h2></div><span class="section-aside">积累每一步，认真每一次。</span></div>
+      <div class="honors-layout">
+        <div class="scholarship-highlight"><span class="highlight-symbol" aria-hidden="true">✳</span><span class="highlight-kicker">NATIONAL SCHOLARSHIP</span><h3>国家奖学金</h3><p>2022–2023 · 2023–2024 · 2024–2025</p><span class="highlight-caption">连续三年获得国家奖学金</span></div>
+        <ul class="honors-list">
+          <li><div><h3>国家奖学金</h3><p>国家级奖学金</p></div><time>2022–2023</time></li>
+          <li><div><h3>国家奖学金</h3><p>国家级奖学金</p></div><time>2023–2024</time></li>
+          <li><div><h3>国家奖学金</h3><p>国家级奖学金</p></div><time>2024–2025</time></li>
+          <li><div><h3>全国大学生数学建模竞赛</h3><p>全国总决赛二等奖</p></div><time>2024</time></li>
+          <li><div><h3>第五届 MathorCup 大数据竞赛</h3><p>全国总决赛一等奖</p></div><time>2024</time></li>
+          <li><div><h3>APMCM 亚太杯数学建模竞赛</h3><p>二等奖</p></div><time>2024</time></li>
+          <li><div><h3>第五届华数杯数学建模竞赛</h3><p>全国总决赛二等奖</p></div><time>2024</time></li>
+          <li><div><h3>全国高校商业精英挑战赛</h3><p>全国总决赛二等奖</p></div><time>2024</time></li>
+          <li><div><h3>中南大学特等奖学金</h3><p>校级奖学金</p></div><time>2023–2024</time></li>
+          <li><div><h3>中南大学优秀学生</h3><p>校级荣誉</p></div><time>2022–2024</time></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section" aria-labelledby="contact-title">
+      <div class="contact-copy"><span class="section-number">04 / GET IN TOUCH</span><h2 id="contact-title">保持交流，一起探索<span>.</span></h2><p>欢迎就学术研究与相关问题交流。</p></div>
+      <div class="contact-details"><a class="contact-email" href="mailto:wangyu_2026@ruc.edu.cn">wangyu_2026@ruc.edu.cn <svg class="icon"><use href="#icon-external"/></svg></a><div class="contact-links"><span>中国人民大学 · 北京</span><button class="copy-email" type="button" hidden><svg class="icon small-icon"><use href="#icon-copy"/></svg><span>复制邮箱</span></button></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-inner"><span>© 2026 王宇 · Yu Wang</span><a href="#">保持好奇，持续探索。<span aria-hidden="true"> ↑</span></a></div></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="citation-dialog" aria-labelledby="citation-title">
+    <div class="dialog-heading"><div><span class="section-number">TCAGRN · BIBM 2026</span><h2 id="citation-title">引用论文</h2></div><button class="dialog-close icon-button" type="button" aria-label="关闭引用窗口"><svg class="icon"><use href="#icon-close"/></svg></button></div>
+    <pre id="bibtex-content" tabindex="0">@inproceedings{shi2026tcagrn,
+  title     = {TCAGRN: Temporal Cross-Attention for Gene
+               Regulatory Network Inference from Pseudotime-Ordered
+               Single-Cell Transcriptomic Data},
+  author    = {Shi, Xingyuan and Wang, Yu and Miao, Ziyang
+               and Zeng, Yanping and Li, Min and Zheng, Ruiqing},
+  booktitle = {BIBM},
+  year      = {2026}
+}</pre>
+    <div class="dialog-actions"><p class="citation-feedback" role="status" aria-live="polite"></p><button class="button button-primary copy-citation" type="button"><svg class="icon small-icon"><use href="#icon-copy"/></svg> 复制 BibTeX</button></div>
+  </dialog>
+</body>
+</html>
