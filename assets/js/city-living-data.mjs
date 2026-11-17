@@ -20,7 +20,22 @@ const sources = {
   zhengzhou: ['郑州市统计局：2024 年统计公报', 'https://tjj.zhengzhou.gov.cn/tjgb/9230847.jhtml'],
   haerbin: ['哈尔滨市 2024 年统计公报（年鉴网站收录）', 'https://www.zgtjnj.org/tjgbimg/2025/2024%E5%B9%B4%E5%93%88%E5%B0%94%E6%BB%A8%E5%B8%82%E5%9B%BD%E6%B0%91%E7%BB%8F%E6%B5%8E%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%8F%91%E5%B1%95%E7%BB%9F%E8%AE%A1%E5%85%AC%E6%8A%A5.pdf'],
   changchun: ['吉林省统计局：长春市 2024 年统计公报', 'https://tjj.jl.gov.cn/tjsj/tjgb/ndgb/202508/t20250806_3488044.html'],
-  yinchuan: ['银川市人民政府：2024 年统计公报', 'https://yinchuan.gov.cn/xxgk/bmxxgkml/stjj/xxgkml_2517/tjxx_7670/tjgb_7671/202504/t20250430_4897469.html']
+  yinchuan: ['银川市人民政府：2024 年统计公报', 'https://yinchuan.gov.cn/xxgk/bmxxgkml/stjj/xxgkml_2517/tjxx_7670/tjgb_7671/202504/t20250430_4897469.html'],
+  sanya: ['三亚市统计局：2024 年统计公报', 'https://tjj.sanya.gov.cn/tjjsite/tjgb/202502/c72b7d2391094f43bcf85ec2bd223f65.shtml'],
+  zhuhai: ['珠海市 2024 年统计公报（珠海特区报刊载）', 'https://pub-zhtb.hizh.cn/a/202505/26/AP6833512de4b01af7bf1ae942.html'],
+  haikou: ['海口市 2024 年统计公报（海口日报刊载）', 'https://szb.hkwb.net/epaper/xml/hkrb/20250327/A05B20250327C.pdf'],
+  quanzhou: ['泉州市统计局：2024 年统计公报', 'https://tjj.quanzhou.gov.cn/zwgk/zfxxgk/fdzdgknr/tjxx/tjgb/202503/t20250331_3153809.htm'],
+  wulumuqi: ['精河县人民政府：2024 年新疆各地居民收入', 'https://www.xjjh.gov.cn/xjjh/c127410/202502/be5c9d47833046408f1a225485a674d2.shtml'],
+  xining: ['西宁市 2024 年民生数据（人民网刊载）', 'https://qh.people.com.cn/n2/2025/0121/c182775-41115365.html'],
+  lanzhou: ['甘肃省统计局：2024 年各市经济指标', 'https://tjj.gansu.gov.cn/tjj/c117468/202505/174143566/files/b46bda090ad947cfa645f6cb8398e656.pdf'],
+  nanchang: ['国盛证券：江西省各市 2024 年城镇居民收入（新浪转载）', 'https://finance.sina.com.cn/roll/2025-06-26/doc-infcktkp3619779.shtml'],
+  shijiazhuang: ['石家庄市人民政府：2024 年统计公报', 'https://www.sjz.gov.cn/columns/8e2f0b12-4574-4ced-b339-bcb378d54b2d/202504/19/b09d4f25-7926-46a5-b88e-c95ea9a9eb14.html'],
+  huizhou: ['惠州市 2024 年统计公报（公报原文收录）', 'https://zgrkk.com/pdf/61566/1746623734-5518358.pdf'],
+  huhehaote: ['呼和浩特市 2024 年统计公报（呼和浩特日报刊载）', 'https://static.0471tv.org.cn/rb/pc/con/202504/03/content_82339.html'],
+  taiyuan: ['太原市 2024 年统计公报（Maptable 收录）', 'https://maptable.com/tjgb/2024/%E5%B1%B1%E8%A5%BF%E7%9C%81/%E5%A4%AA%E5%8E%9F%E5%B8%82/report/shan-xi-sheng-tai-yuan-shi-2024-nian-guo-min-jing-ji-he-she-hui-fa-zhan-tong-ji-gong-bao-2'],
+  xuzhou: ['江苏省人民政府：徐州市 2024 年经济运行情况', 'https://www.jiangsu.gov.cn/art/2025/2/5/art_84324_11490817.html'],
+  beihai: ['广西壮族自治区海洋局：北海市 2024 年经济数据', 'https://hyj.gxzf.gov.cn/zwgk_66846/tzgg/P020250610350347659091.pdf'],
+  lasa: ['拉萨市人民政府：2024 年经济运行情况', 'https://www.lasa.gov.cn/lasa/lsyw/202504/25374ef786714192bc3fd915b4e3cbd7.shtml']
 };
 // name, annual income, under 30 m², 30–60 m², income source key
 const rows = [
@@ -41,6 +56,44 @@ const rows = [
  ['东莞',69769,836,1430,'dongguan'], ['昆明',57444,531,1278,'kunming'],
  ['贵阳',50576,592,1171,'guiyang'], ['南宁',46381,533,1201,'nanning'],
  ['郑州',50494.3,537,1153,'zhengzhou'], ['哈尔滨',48216,723,1205,'haerbin'],
- ['长春',42350,595,1229,'changchun'], ['银川',49164,407,1021,'yinchuan']
+ ['长春',42350,595,1229,'changchun'], ['银川',49164,407,1021,'yinchuan'],
+ ['三亚',47666,null,2213,'sanya'], ['珠海',70052,null,2233,'zhuhai'],
+ ['海口',48132,null,1596,'haikou'], ['泉州',63594,null,1230,'quanzhou'],
+ ['乌鲁木齐',51779,null,1536,'wulumuqi'], ['西宁',43803,null,1550,'xining'],
+ ['兰州',50489,null,1215,'lanzhou'], ['南昌',57294,693,1312,'nanchang'],
+ ['石家庄',49990,520,1084,'shijiazhuang'], ['惠州',54572,null,1116,'huizhou'],
+ ['呼和浩特',59540,null,1302,'huhehaote'], ['太原',47930,518,907,'taiyuan'],
+ ['徐州',46936,null,956,'xuzhou'], ['北海',45542,null,699,'beihai'],
+ ['拉萨',58171,null,null,'lasa']
 ];
-export const cities = rows.map(([name, income, small, medium, key]) => ({name, income, rents: {small, medium}, source: sources[key], note: name === '重庆' ? '租金覆盖主城区，收入覆盖全市城镇居民，地域范围不同。' : ''}));
+// 2024 年 GDP 初步核算数（亿元）：前 50 名依据各地统计局数据汇编；其他城市见下方各地资料。
+export const gdpRankingSource = ['2024 年城市 GDP 前 50 名汇编（聚汇数据，原始数据来自各市统计局）', 'https://gdp.gotohui.com/topic-4621'];
+const gdp = {
+ 北京:49843.1, 上海:53926.71, 天津:18024.32, 重庆:32193.15, 深圳:36801.87, 广州:31032.5,
+ 苏州:26727, 成都:23511.3, 杭州:21860.32, 武汉:21106.23, 南京:18500.81, 宁波:18147.7,
+ 青岛:16719.46, 无锡:16263.29, 长沙:15268.78, 郑州:14532.1, 福州:14236.76, 济南:13527.55,
+ 合肥:13507.7, 佛山:13361.9, 西安:13317.78, 泉州:13094.87, 南通:12421.9, 东莞:12282.15,
+ 常州:10813.6, 温州:9718.85, 徐州:9537.12, 大连:9516.9, 沈阳:9027.1, 厦门:8589.01,
+ 绍兴:8368.6, 昆明:8275.22, 石家庄:8203.4, 南昌:7800.37, 长春:7632.19, 嘉兴:7569.53,
+ 惠州:6136.39, 哈尔滨:6016.3, 南宁:5995.36, 贵阳:5777.41, 太原:5418.87, 乌鲁木齐:4502.16,
+ 珠海:4479.06, 呼和浩特:4107.08, 兰州:3742.3, 银川:2939.53, 海口:2470.63, 北海:1888.04,
+ 西宁:1862.09, 三亚:1004.70, 拉萨:990.04
+};
+const capitals = new Set(['广州','成都','杭州','武汉','南京','长沙','郑州','福州','济南','合肥','西安','沈阳','昆明','石家庄','南昌','长春','哈尔滨','南宁','贵阳','太原','乌鲁木齐','呼和浩特','兰州','银川','海口','西宁','拉萨']);
+const municipalities = new Set(['北京','上海','天津','重庆']);
+const gdpSources = {
+ 哈尔滨: ['哈尔滨市 2024 年统计公报', 'https://www.tjnj.net/tjgbimg/2025/2024%E5%B9%B4%E5%93%88%E5%B0%94%E6%BB%A8%E5%B8%82%E5%9B%BD%E6%B0%91%E7%BB%8F%E6%B5%8E%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%8F%91%E5%B1%95%E7%BB%9F%E8%AE%A1%E5%85%AC%E6%8A%A5.pdf'],
+ 南宁: sources.nanning, 贵阳: sources.guiyang, 太原: sources.taiyuan,
+ 乌鲁木齐: ['乌鲁木齐市统计局：2024 年经济运行情况', 'https://www.gqp.gov.cn/gqbkfq/c120309/202502/f388f3c7b5934d0aaebb610069d29487.shtml'],
+ 珠海: sources.zhuhai, 呼和浩特: sources.huhehaote,
+ 兰州: ['兰州市 2024 年统计公报', 'https://manage.gsei.com.cn/html/1288/2025-10-13/content-626780.html'],
+ 银川: sources.yinchuan, 海口: sources.haikou, 北海: sources.beihai,
+ 西宁: ['西宁市 2024 年统计公报（西宁晚报刊载）', 'https://epaper.tibet3.com/xhdsb/html/202501/26/26a279a6-6e67-4d44-8dc4-3282f1631198.pdf'],
+ 三亚: sources.sanya, 拉萨: sources.lasa
+};
+export const cities = rows.map(([name, income, small, medium, key]) => ({
+ name, income, rents: {small, medium}, source: sources[key], gdp: gdp[name], gdpSource: gdpSources[name] || gdpRankingSource,
+ category: municipalities.has(name) ? 'municipal' : capitals.has(name) ? 'capital' : 'other',
+ note: name === '重庆' ? '租金覆盖主城区，收入覆盖全市城镇居民，地域范围不同。' : '',
+ rentMissing: name === '拉萨' ? '中指研究院这份 50 城报告未覆盖拉萨，暂无可比租金数据。' : '该面积档的租金因样本较少未公布，可切换至 30–60㎡查看。'
+}));

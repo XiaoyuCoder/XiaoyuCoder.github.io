@@ -1,4 +1,4 @@
-import { cities, rentSource } from './city-living-data.mjs?v=20261117';
+import { cities, rentSource } from './city-living-data.mjs?v=20261117-city2';
 
 const chart = document.querySelector('#city-chart');
 const list = document.querySelector('#city-list');
@@ -8,12 +8,17 @@ const count = document.querySelector('#count-summary');
 const legend = document.querySelector('#quadrant-legend');
 const empty = document.querySelector('#empty-search');
 const areaTitle = document.querySelector('#chart-area');
+const clearSearch = document.querySelector('#clear-search');
+const categoryButtons = [...document.querySelectorAll('[data-city-filter]')];
 const svgNS = 'http://www.w3.org/2000/svg';
 const money = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 0 });
 const annualMoney = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 1 });
+const gdpMoney = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 2 });
 let area = 'small';
 let selected = '北京';
 let query = '';
+let category = 'all';
+document.querySelector('#city-total').textContent = cities.length;
 
 function svg(tag, attrs, text) {
   const node = document.createElementNS(svgNS, tag);
@@ -25,8 +30,23 @@ function share(city) { return city.rents[area] / (city.income / 12) * 100; }
 function group(city) {
   return (city.income / 12 > 5000 ? 1 : 0) + (share(city) > 15 ? 2 : 0);
 }
-function matches(city) { return city.name.includes(query); }
-function selectCity(name) { selected = name; render(); }
+function matches(city) { return city.name.includes(query.replace(/市$/, '')) && (category === 'all' || city.category === category); }
+function sortCities(a, b) {
+  if (a.name === '北京') return -1;
+  if (b.name === '北京') return 1;
+  const order = {municipal: 0, capital: 1, other: 2};
+  return order[a.category] - order[b.category] || b.gdp - a.gdp;
+}
+function selectCity(name, fromList = false, fromKeyboard = false) {
+  selected = name;
+  render();
+  if (fromList) {
+    detail.focus({preventScroll: true});
+    detail.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest'});
+  } else if (fromKeyboard) {
+    [...chart.querySelectorAll('.city-point')].find(point => point.dataset.city === name)?.focus({preventScroll: true});
+  }
+}
 function renderChart() {
   chart.querySelectorAll('.plot-layer').forEach(node => node.remove());
   const layer = svg('g', {class: 'plot-layer'});
@@ -59,9 +79,10 @@ function renderChart() {
   // Add labels only where space allows; every city remains available in the list.
   const boxes = [];
   const ordered = [...available].sort((a,b) => (a.name === selected ? -1 : b.name === selected ? 1 : b.income-a.income));
+  let selectedPoint;
   ordered.forEach((city, i) => {
     const cx = x(city.income/12), cy = y(share(city)), matched = matches(city), active = city.name === selected;
-    const point = svg('g',{class:`city-point${active ? ' is-selected' : ''}${matched ? '' : ' is-muted'}`,transform:`translate(${cx} ${cy})`,role:'button',tabindex:'0','aria-label':`${city.name}，月人均可支配收入 ${money.format(city.income/12)} 元，租金占比 ${share(city).toFixed(1)}%`,'aria-pressed':String(active)});
+    const point = svg('g',{class:`city-point${active ? ' is-selected' : ''}${matched ? '' : ' is-muted'}`,transform:`translate(${cx} ${cy})`,role:'button',tabindex:matched ? '0' : '-1','aria-hidden':String(!matched),'data-city':city.name,'aria-label':`${city.name}，月人均可支配收入 ${money.format(city.income/12)} 元，租金占比 ${share(city).toFixed(1)}%`,'aria-pressed':String(active)});
     point.style.setProperty('--point-delay', `${Math.min(i * 15, 450)}ms`);
     point.append(svg('circle',{r:14,class:'point-halo'}), svg('circle',{r:6,class:'point-dot'}), svg('circle',{r:15,class:'point-hit'}));
     const tip = svg('title',{},`${city.name} · ${share(city).toFixed(1)}%`); point.append(tip);
@@ -76,9 +97,10 @@ function renderChart() {
       }
     }
     point.addEventListener('click', () => selectCity(city.name));
-    point.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') {event.preventDefault(); selectCity(city.name);} });
-    layer.append(point);
+    point.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') {event.preventDefault(); selectCity(city.name, false, true);} });
+    if (active) selectedPoint = point; else layer.append(point);
   });
+  if (selectedPoint) layer.append(selectedPoint);
   chart.append(layer);
 }
 function renderDetail(city) {
@@ -88,7 +110,7 @@ function renderDetail(city) {
   detail.append(kicker,title);
   if (!city) { const p=document.createElement('p'); p.className='detail-intro'; p.textContent='从图中或城市列表中选择一个城市，查看其收入、租金及资料来源。'; detail.append(p); return; }
   const rent = city.rents[area];
-  const p = document.createElement('p'); p.className='detail-intro'; p.textContent = rent === null ? '该面积档的租金因样本较少未公布。可切换至 30–60㎡查看。' : '2024 年收入与 2024 年 12 月租金的对照。'; detail.append(p);
+  const p = document.createElement('p'); p.className='detail-intro'; p.textContent = rent === null ? city.rentMissing : '2024 年收入与 2024 年 12 月租金的对照。'; detail.append(p);
   if (rent !== null) {
     const hero = document.createElement('div'); hero.className='detail-ratio';
     const label=document.createElement('span'); label.textContent='样本租金 / 人均月收入';
@@ -96,20 +118,29 @@ function renderDetail(city) {
     hero.append(label,value); detail.append(hero);
   }
   const dl=document.createElement('dl'); dl.className='detail-stats';
-  const values=[['人均年可支配收入', `${annualMoney.format(city.income)} 元`],['折算人均月收入', `${money.format(city.income/12)} 元`],[area === 'small' ? '30㎡以下平均套租金' : '30–60㎡平均套租金',rent === null ? '未公布' : `${money.format(rent)} 元 / 月`]];
+  const values=[['人均年可支配收入', `${annualMoney.format(city.income)} 元`],['折算人均月收入', `${money.format(city.income/12)} 元`],[area === 'small' ? '30㎡以下平均套租金' : '30–60㎡平均套租金',rent === null ? '暂无数据' : `${money.format(rent)} 元 / 月`],['2024 年 GDP（排序参考）', `${gdpMoney.format(city.gdp)} 亿元`]];
   values.forEach(([name,value])=>{const row=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=name;dd.textContent=value;row.append(dt,dd);dl.append(row);});
   detail.append(dl);
   if(city.note){const note=document.createElement('p');note.className='detail-note';note.textContent=city.note;detail.append(note);}
   const links=document.createElement('div'); links.className='detail-links';
-  [[city.source[0],city.source[1]],['中指研究院：2024 年 12 月租赁报告',rentSource]].forEach(([label,url])=>{const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=`${label} ↗`;links.append(a);});
+  [['收入来源',city.source[0],city.source[1]],['租金来源','中指研究院：2024 年 12 月租赁报告',rentSource],['GDP 来源',city.gdpSource[0],city.gdpSource[1]]].forEach(([kind,label,url])=>{const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=`${kind}：${label} ↗`;links.append(a);});
   detail.append(links);
 }
 function renderList(filtered) {
   list.replaceChildren();
-  [...filtered].sort((a,b)=>a.name.localeCompare(b.name,'zh-CN')).forEach(city=>{
-    const button=document.createElement('button');button.type='button';button.className='city-chip';button.setAttribute('aria-pressed',String(city.name===selected));
-    button.textContent=city.name; if(city.rents[area]===null){const mark=document.createElement('span');mark.textContent='未公布';button.append(mark);}
-    button.addEventListener('click',()=>selectCity(city.name));list.append(button);
+  const labels = {municipal:'首都与直辖市', capital:'省会与自治区首府', other:'其他城市'};
+  ['municipal','capital','other'].forEach(key => {
+    const groupCities = filtered.filter(city => city.category === key).sort(sortCities);
+    if (!groupCities.length) return;
+    const section=document.createElement('section'); section.className='city-group';
+    const heading=document.createElement('h3'); heading.textContent=`${labels[key]} · ${groupCities.length}`;
+    const chips=document.createElement('div'); chips.className='city-group-items';
+    groupCities.forEach(city=>{
+      const button=document.createElement('button');button.type='button';button.className='city-chip';button.setAttribute('aria-pressed',String(city.name===selected));
+      button.textContent=city.name; if(city.rents[area]===null){const mark=document.createElement('span');mark.textContent='暂无租金';button.append(mark);}
+      button.addEventListener('click',()=>selectCity(city.name, true));chips.append(button);
+    });
+    section.append(heading,chips);list.append(section);
   });
   empty.hidden=filtered.length>0;
 }
@@ -119,10 +150,17 @@ function renderLegend(available) {
 }
 function render() {
   const filtered=cities.filter(matches), available=filtered.filter(city=>city.rents[area]!==null);
-  count.textContent=`${query ? '搜索结果' : '已收录'} ${filtered.length} 城 · 当前面积档 ${available.length} 城可绘制${filtered.length-available.length ? ` · ${filtered.length-available.length} 城未公布` : ''}`;
+  count.textContent=`${query || category !== 'all' ? '当前筛选' : '已收录'} ${filtered.length} 城 · ${available.length} 城可绘制${filtered.length-available.length ? ` · ${filtered.length-available.length} 城暂无该档租金` : ''}`;
   areaTitle.textContent=area==='small'?'30㎡以下住宅':'30–60㎡住宅';
   renderChart();renderList(filtered);renderDetail(cities.find(city=>city.name===selected && matches(city)));renderLegend(available);
 }
-search.addEventListener('input',()=>{query=search.value.trim(); const found=cities.filter(matches); if(!found.some(city=>city.name===selected)) selected=found[0]?.name || ''; render();});
+function updateSelection() {
+  const found = cities.filter(matches).sort(sortCities);
+  if (!found.some(city => city.name === selected)) selected = found[0]?.name || '';
+  render();
+}
+search.addEventListener('input',()=>{query=search.value.trim();clearSearch.hidden=!query;updateSelection();});
+clearSearch.addEventListener('click',()=>{search.value='';query='';clearSearch.hidden=true;search.focus();updateSelection();});
+categoryButtons.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.cityFilter;categoryButtons.forEach(item=>item.setAttribute('aria-pressed', String(item === button)));updateSelection();}));
 document.querySelectorAll('input[name="area"]').forEach(input=>input.addEventListener('change',()=>{area=input.value;render();}));
 render();
