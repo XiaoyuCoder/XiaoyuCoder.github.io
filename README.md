@@ -6,7 +6,7 @@
 
 - 个人简介、研究兴趣与联系方式（仅 `wangyu_2026@ruc.edu.cn`）
 - 中国人民大学博士在读及中南大学本科教育背景
-- TCAGRN（BIBM 2026）论文及 BibTeX 引用
+- TCAGRN（BIBM 2026）论文
 - 奖学金与竞赛荣誉
 - 小工具导航及财富自由计算器：目标测算、资产反推、参数与公式、示例场景
 - 城市租金与收入观察：搜索、互动散点图、住宅面积切换和逐城市来源
@@ -25,10 +25,10 @@ python -m http.server 4173 --bind 127.0.0.1
 
 ## 更新
 
-- `index.html`：主页内容、网页元数据和 BibTeX。
+- `index.html`：主页内容和网页元数据。
 - `assets/css/main.css`：桌面与移动端样式。
 - `assets/js/navigation.js`：各页面共用的手机导航和主页章节定位。
-- `assets/js/main.js`：主页复制邮箱和引用弹窗。
+- `assets/js/main.js`：主页复制邮箱。
 - `tools/index.html`：小工具目录。
 - `tools/financial-freedom/index.html`：财富自由计算器。
 - `assets/css/tools.css`：小工具页面的蓝白配色和响应式布局。
