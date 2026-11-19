@@ -52,7 +52,7 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 760) closeMenu();
+  if (window.innerWidth > 960) closeMenu();
   updateActiveSection();
 });
 updateActiveSection();
