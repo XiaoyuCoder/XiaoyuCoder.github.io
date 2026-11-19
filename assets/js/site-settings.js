@@ -102,8 +102,8 @@
     const isDark=window.siteTheme.preference === 'dark';
     const label=lang === 'en' ? (isDark ? 'Switch to light theme' : 'Switch to dark theme') : (isDark ? '切换浅色模式' : '切换深色模式');
     themeButton.setAttribute('aria-label',label); themeButton.title=label;
-    themeButton.querySelector('.theme-sun').hidden=!isDark;
-    themeButton.querySelector('.theme-moon').hidden=isDark;
+    themeButton.querySelector('.theme-sun').toggleAttribute('hidden', !isDark);
+    themeButton.querySelector('.theme-moon').toggleAttribute('hidden', isDark);
   }
   themeButton.addEventListener('click',()=>{window.siteTheme.set(window.siteTheme.preference === 'dark' ? 'light' : 'dark');updateThemeButton();});
   themeSetting.append(themeButton);
