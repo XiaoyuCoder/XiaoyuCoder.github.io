@@ -88,23 +88,26 @@
   const button=document.createElement('button'); button.type='button'; button.className='language-switch'; button.dataset.noTranslate='';
   function update() {
     document.documentElement.lang=lang === 'en' ? 'en' : 'zh-CN';
-    button.textContent=lang === 'en' ? '中文' : 'EN';
+    button.textContent=lang === 'en' ? '中' : 'EN';
     button.setAttribute('aria-label',lang === 'en' ? 'Switch to Chinese' : 'Switch to English');
+    updateThemeButton();
     visit(document.documentElement);
   }
   button.addEventListener('click',()=>{lang=lang === 'zh' ? 'en' : 'zh'; try {localStorage.setItem('site-language',lang);} catch (_) {} update(); window.dispatchEvent(new Event('site:languagechange'));});
   document.querySelector('.header-inner').insertBefore(button,document.querySelector('.menu-toggle'));
-  const themeLabel=document.createElement('label'); themeLabel.className='theme-setting';
-  const themeIcon=document.createElement('span'); themeIcon.className='theme-icon'; themeIcon.setAttribute('aria-hidden','true');
-  themeIcon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>';
-  const themeSelect=document.createElement('select'); themeSelect.setAttribute('aria-label','外观设置');
-  for (const [value,label] of [['system','跟随系统'],['light','浅色'],['dark','深色']]) {
-    const option=document.createElement('option'); option.value=value; option.textContent=label; themeSelect.append(option);
+  const themeSetting=document.createElement('div'); themeSetting.className='theme-setting'; themeSetting.dataset.noTranslate='';
+  const themeButton=document.createElement('button'); themeButton.type='button'; themeButton.className='theme-trigger';
+  themeButton.innerHTML='<svg class="theme-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8a8.5 8.5 0 1 0 11.4 11.4Z"/></svg><svg class="theme-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>';
+  function updateThemeButton() {
+    const isDark=window.siteTheme.preference === 'dark';
+    const label=lang === 'en' ? (isDark ? 'Switch to light theme' : 'Switch to dark theme') : (isDark ? '切换浅色模式' : '切换深色模式');
+    themeButton.setAttribute('aria-label',label); themeButton.title=label;
+    themeButton.querySelector('.theme-sun').hidden=!isDark;
+    themeButton.querySelector('.theme-moon').hidden=isDark;
   }
-  themeSelect.value=window.siteTheme.preference;
-  themeSelect.addEventListener('change',()=>window.siteTheme.set(themeSelect.value));
-  themeLabel.append(themeIcon,themeSelect);
-  document.querySelector('.header-inner').insertBefore(themeLabel,document.querySelector('.menu-toggle'));
+  themeButton.addEventListener('click',()=>{window.siteTheme.set(window.siteTheme.preference === 'dark' ? 'light' : 'dark');updateThemeButton();});
+  themeSetting.append(themeButton);
+  document.querySelector('.header-inner').insertBefore(themeSetting,document.querySelector('.menu-toggle'));
   window.siteI18n={get language(){return lang;}, cityName:name=>names[name] || name};
   update();
   new MutationObserver(records=>{for(const record of records){if(record.type==='attributes') element(record.target); else if(record.type==='characterData') textNode(record.target); else record.addedNodes.forEach(visit);}}).observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:attrs});

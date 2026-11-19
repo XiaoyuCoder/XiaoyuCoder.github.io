@@ -3,10 +3,8 @@
   .site-header { background:rgb(12 25 42 / 97%); border-color:#304760; }
   .site-nav > a, .site-nav .nav-contact { color:#c1d7ee; }
   .site-nav > a:hover, .site-nav > a[aria-current] { color:#e8f3ff; background:#203c5d; }
-  .language-switch { color:#d4e8ff; border-color:#4b7096; background:#1a304a; }
-  .language-switch:hover { background:#2c5078; }
-  .theme-setting { color:#d4e8ff; border-color:#4b7096; background:#1a304a; }
-  .theme-setting:hover { background:#2c5078; }
+  .language-switch, .theme-trigger { color:#c9ddf2; border-color:#4b6783; background:transparent; }
+  .language-switch:hover, .theme-trigger:hover { color:#fff; background:#233e5c; border-color:#8aa9c9; }
   .hero-role, .hero-copy .hero-intro, .name-en, .education-detail > p, .education-detail h3 > span, .education-date, .education-detail > .degree, .degree-mark, .section-aside, .paper-authors, .honors-list p, .honors-list time, .contact-copy p, .contact-links, .footer-inner { color:#adc4da; }
   .section-heading h2, .paper-content h3, .honors-list h3, .contact-copy h2, .form-section-title h2, .tool-card-content h2 { color:#e4efff; }
   .hero-role strong, .contact-email, .section-number { color:#a7cfff; }
