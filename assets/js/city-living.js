@@ -32,7 +32,12 @@ function share(city) { return city.rents[area] / (city.income / 12) * 100; }
 function group(city) {
   return (city.income / 12 > 5000 ? 1 : 0) + (share(city) > 15 ? 2 : 0);
 }
-function matches(city) { return city.name.includes(query.replace(/市$/, '')) && (category === 'all' || city.category === category); }
+function matches(city) {
+  const normalize=value => value.toLowerCase().replace(/[’'\s-]/g, '');
+  const term=normalize(query.replace(/市$/, ''));
+  const englishName=normalize(window.siteI18n?.cityName(city.name) || '');
+  return (city.name.includes(term) || englishName.includes(term)) && (category === 'all' || city.category === category);
+}
 function sortCities(a, b) {
   if (a.name === '北京') return -1;
   if (b.name === '北京') return 1;
