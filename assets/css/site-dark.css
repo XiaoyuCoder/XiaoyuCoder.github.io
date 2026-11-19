@@ -5,8 +5,8 @@
   .site-nav > a:hover, .site-nav > a[aria-current] { color:#e8f3ff; background:#203c5d; }
   .language-switch { color:#d4e8ff; border-color:#4b7096; background:#1a304a; }
   .language-switch:hover { background:#2c5078; }
-  .theme-setting { color:#d4e8ff; }
-  .theme-setting select { color:#d4e8ff; border-color:#4b7096; background:#1a304a; }
+  .theme-setting { color:#d4e8ff; border-color:#4b7096; background:#1a304a; }
+  .theme-setting:hover { background:#2c5078; }
   .hero-role, .hero-copy .hero-intro, .name-en, .education-detail > p, .education-detail h3 > span, .education-date, .education-detail > .degree, .degree-mark, .section-aside, .paper-authors, .honors-list p, .honors-list time, .contact-copy p, .contact-links, .footer-inner { color:#adc4da; }
   .section-heading h2, .paper-content h3, .honors-list h3, .contact-copy h2, .form-section-title h2, .tool-card-content h2 { color:#e4efff; }
   .hero-role strong, .contact-email, .section-number { color:#a7cfff; }

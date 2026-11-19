@@ -3,10 +3,12 @@
 .site-nav { order: 1; }
 .language-switch { order: 2; flex: 0 0 auto; min-width: 42px; min-height: 36px; padding: 6px 9px; border: 1px solid #bdd1e8; border-radius: 6px; color: #174f99; background: #f5f9ff; font-size: 12px; font-weight: 700; line-height: 1; }
 .language-switch:hover { background: #e6f0ff; border-color: #80a8d6; }
-.theme-setting { order:3; position:relative; flex:0 0 auto; }
-.theme-setting::after { content:""; position:absolute; right:11px; top:13px; width:6px; height:6px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg); pointer-events:none; }
-.theme-setting select { appearance:none; height:36px; padding:0 26px 0 10px; border:1px solid #bdd1e8; border-radius:6px; color:#174f99; background:#f5f9ff; font:600 12px var(--sans); cursor:pointer; }
-.theme-setting select:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.theme-setting { order:3; position:relative; display:grid; place-items:center; flex:0 0 auto; width:40px; height:36px; border:1px solid #bdd1e8; border-radius:6px; color:#174f99; background:#f5f9ff; }
+.theme-setting:hover { background:#e6f0ff; border-color:#80a8d6; }
+.theme-setting:has(select:focus-visible) { outline:2px solid var(--accent); outline-offset:3px; }
+.theme-icon { display:flex; pointer-events:none; }
+.theme-icon svg { width:20px; height:20px; }
+.theme-setting select { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
 .menu-toggle { order: 4; }
 html[lang="en"] .wordmark-en, html[lang="en"] .education-detail h3 > span[lang="en"] { display: none; }
 html[lang="en"] .hero h1 { letter-spacing: 0; }
@@ -18,7 +20,7 @@ html[lang="en"] .site-nav > a { padding-left: 7px; padding-right: 7px; }
   .language-switch { margin-left: auto; }
   .wordmark { margin-right: 0; }
 }
-@media(max-width:460px) { .wordmark-en { display:none; } .theme-setting select { padding-left:8px; padding-right:22px; font-size:11px; } .theme-setting::after { right:8px; } }
+@media(max-width:460px) { .wordmark-en { display:none; } }
 @media (min-width:761px) and (max-width:960px) {
   .site-nav { display:none; position:absolute; left:0; right:0; top:84px; padding:16px 40px 24px; background:var(--background); border-bottom:1px solid var(--line); box-shadow:0 15px 18px #00000015; align-items:stretch; gap:3px; }
   .site-nav.is-open { display:flex; flex-direction:column; }
