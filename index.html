@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/assets/css/site-settings.css?v=20261119-appearance">
   <link id="site-dark-theme" rel="stylesheet" href="/assets/css/site-dark.css?v=20261119-appearance" media="not all">
   <script src="/assets/js/site-theme.js?v=20261119-appearance"></script>
-  <script src="/assets/js/site-settings.js?v=20261119-icons" defer></script>
+  <script src="/assets/js/site-settings.js?v=20261119-projects-research" defer></script>
   <script src="/assets/js/navigation.js" defer></script>
   <script src="/assets/js/main.js?v=20261117-no-bibtex" defer></script>
   <title>王宇 Yu Wang | 中国人民大学</title>
@@ -37,10 +37,10 @@
       <button class="menu-toggle" aria-label="打开导航" aria-controls="site-nav" aria-expanded="false"><span></span><span></span></button>
       <nav id="site-nav" class="site-nav" aria-label="主导航">
         <a href="#about" aria-current="location">关于</a>
-        <a href="#education">教育背景</a>
-        <a href="#publications">学术论文</a>
-        <a href="#honors">荣誉奖项</a>
         <a href="#affiliations">个人身份</a>
+        <a href="#education">教育背景</a>
+        <a href="/research/">项目和研究</a>
+        <a href="#honors">荣誉奖项</a>
         <a href="/tools/">小工具</a>
         <a class="nav-contact" href="#contact">联系我 <svg class="icon"><use href="#icon-external"/></svg></a>
       </nav>
@@ -57,7 +57,7 @@
           <p class="hero-intro">本科毕业于中南大学数据科学与大数据技术专业。关注大语言模型、图神经网络和 AI for Science，探索数据驱动的智能方法及其科学应用。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="mailto:wangyu_2026@ruc.edu.cn">邮件联系 <svg class="icon"><use href="#icon-arrow"/></svg></a>
-            <a class="button button-secondary" href="#publications">查看论文 <svg class="icon"><use href="#icon-arrow"/></svg></a>
+            <a class="button button-secondary" href="/research/">查看论文 <svg class="icon"><use href="#icon-arrow"/></svg></a>
           </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
@@ -78,8 +78,26 @@
       <ul><li>大语言模型</li><li>图神经网络</li><li>AI for Science</li></ul>
     </div>
 
+    <section id="affiliations" class="content-section" aria-labelledby="affiliations-title">
+      <div class="section-heading"><div><span class="section-number">01 / AFFILIATIONS</span><h2 id="affiliations-title">个人身份</h2></div></div>
+      <ul class="education-list">
+        <li class="education-item">
+          <div class="education-date">2026.09 — 至今</div>
+          <div class="education-detail"><h3>中国人民大学研究生会</h3><p>成员</p></div>
+        </li>
+        <li class="education-item">
+          <div class="education-date">2026.09 — 至今</div>
+          <div class="education-detail"><h3>中国人民大学未来人类联合研究院</h3><p>青年助理</p></div>
+        </li>
+        <li class="education-item">
+          <div class="education-date">2026.03 — 至今</div>
+          <div class="education-detail"><h3>中国人民大学信息学院关系智能实验室</h3><p>成员</p></div>
+        </li>
+      </ul>
+    </section>
+
     <section id="education" class="content-section" aria-labelledby="education-title">
-      <div class="section-heading"><div><span class="section-number">01 / EDUCATION</span><h2 id="education-title">教育背景</h2></div><span class="section-aside">求知，是一段持续的旅程。</span></div>
+      <div class="section-heading"><div><span class="section-number">02 / EDUCATION</span><h2 id="education-title">教育背景</h2></div><span class="section-aside">求知，是一段持续的旅程。</span></div>
       <div class="education-list">
         <article class="education-item current-education">
           <div class="education-date"><span>2026.09 — 至今</span><span class="current-tag">在读</span></div>
@@ -92,23 +110,6 @@
           <span class="degree-mark" aria-hidden="true">Bachelor</span>
         </article>
       </div>
-    </section>
-
-    <section id="publications" class="content-section publications-section" aria-labelledby="publications-title">
-      <div class="section-heading"><div><span class="section-number">02 / PUBLICATIONS</span><h2 id="publications-title">学术论文<span class="heading-count">01</span></h2></div><span class="section-aside">从问题出发，让研究落地。</span></div>
-      <article class="publication">
-        <div class="paper-art" aria-hidden="true">
-          <span class="paper-art-label">TEMPORAL<br>CROSS-ATTENTION</span>
-          <svg viewBox="0 0 180 125" fill="none"><g stroke="currentColor" stroke-width="1"><path d="M24 28 84 62 153 23M24 28l69 70 60-75M22 96l62-34 71 38M22 96l71 2M84 62l9 36M153 23l2 77M24 28l-2 68"/><path d="M24 28h129M22 96l131-73" opacity=".3"/></g><g fill="var(--paper-node)"><circle cx="24" cy="28" r="6"/><circle cx="22" cy="96" r="5"/><circle cx="84" cy="62" r="8"/><circle cx="93" cy="98" r="5"/><circle cx="153" cy="23" r="5"/><circle cx="155" cy="100" r="6"/></g></svg>
-          <span class="paper-art-footer">TCAGRN <span>2026</span></span>
-        </div>
-        <div class="paper-content">
-          <div class="paper-meta"><span class="venue-badge">BIBM 2026</span><span class="paper-type">CONFERENCE PAPER</span></div>
-          <h3 lang="en">TCAGRN: Temporal Cross-Attention for Gene Regulatory Network Inference from Pseudotime-Ordered Single-Cell Transcriptomic Data</h3>
-          <p class="paper-authors" lang="en">Xingyuan Shi, <strong>Yu Wang</strong>, Ziyang Miao, Yanping Zeng, Min Li, and Ruiqing Zheng</p>
-          <div class="paper-bottom"><div class="paper-topics"><span>基因调控网络</span><span>单细胞转录组</span></div></div>
-        </div>
-      </article>
     </section>
 
     <section id="honors" class="content-section" aria-labelledby="honors-title">
@@ -134,30 +135,8 @@
       </div>
     </section>
 
-    <section id="affiliations" class="content-section" aria-labelledby="affiliations-title">
-      <div class="section-heading"><div><span class="section-number">04 / AFFILIATIONS</span><h2 id="affiliations-title">个人身份</h2></div></div>
-      <ul class="education-list">
-        <li class="education-item">
-          <div class="education-date">2026.09 — 至今</div>
-          <div class="education-detail"><h3>中国人民大学研究生会</h3><p>成员</p></div>
-        </li>
-        <li class="education-item">
-          <div class="education-date">2026.09 — 至今</div>
-          <div class="education-detail"><h3>中国人民大学未来人类联合研究院</h3><p>成员</p></div>
-        </li>
-        <li class="education-item">
-          <div class="education-date">2026.03 — 至今</div>
-          <div class="education-detail"><h3>中国人民大学信息学院关系智能实验室</h3><p>成员</p></div>
-        </li>
-        <li class="education-item">
-          <div class="education-date">2024.09 — 2025.06</div>
-          <div class="education-detail"><h3>中南大学计算机学院学业发展与服务中心</h3><p>副部长</p></div>
-        </li>
-      </ul>
-    </section>
-
     <section id="contact" class="contact-section" aria-labelledby="contact-title">
-      <div class="contact-copy"><span class="section-number">05 / GET IN TOUCH</span><h2 id="contact-title">保持交流，一起探索<span>.</span></h2><p>欢迎就学术研究与相关问题交流。</p></div>
+      <div class="contact-copy"><span class="section-number">04 / GET IN TOUCH</span><h2 id="contact-title">保持交流，一起探索<span>.</span></h2><p>欢迎就学术研究与相关问题交流。</p></div>
       <div class="contact-details"><a class="contact-email" href="mailto:wangyu_2026@ruc.edu.cn">wangyu_2026@ruc.edu.cn <svg class="icon"><use href="#icon-external"/></svg></a><div class="contact-links"><span>中国人民大学 · 北京</span><button class="copy-email" type="button" hidden><svg class="icon small-icon"><use href="#icon-copy"/></svg><span>复制邮箱</span></button></div></div>
     </section>
   </main>

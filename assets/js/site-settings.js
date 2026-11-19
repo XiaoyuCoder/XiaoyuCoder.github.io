@@ -1,12 +1,11 @@
 (() => {
   const entries = {
-    '个人身份':'Affiliations','成员':'Member','副部长':'Deputy Department Head',
+    '个人身份':'Affiliations','成员':'Member','青年助理':'Youth Assistant',
     '中国人民大学研究生会':'Graduate Student Union, Renmin University of China',
     '中国人民大学未来人类联合研究院':'Joint Institute for the Future of Humanity, Renmin University of China',
     '中国人民大学信息学院关系智能实验室':'Relational Intelligence Laboratory, School of Information, Renmin University of China',
-    '中南大学计算机学院学业发展与服务中心':'Academic Development and Service Center, School of Computer Science, Central South University',
-    '2026.03 — 至今':'Mar 2026 — Present','2024.09 — 2025.06':'Sep 2024 — Jun 2025',
-    '跳转到主要内容':'Skip to main content','王宇':'Yu Wang','关于':'About','教育背景':'Education','学术论文':'Publications','荣誉奖项':'Honors','小工具':'Tools','联系我':'Contact','首页':'Home',
+    '2026.03 — 至今':'Mar 2026 — Present',
+    '跳转到主要内容':'Skip to main content','王宇':'Yu Wang','关于':'About','教育背景':'Education','项目和研究':'Projects & Research','项目和研究 | 王宇 Yu Wang':'Projects & Research | Yu Wang','荣誉奖项':'Honors','小工具':'Tools','联系我':'Contact','首页':'Home',
     '中国人民大学 · 信息学院':'Renmin University of China · School of Information','计算机科学与技术专业':'Computer Science and Technology','博士研究生在读':'Ph.D. student',
     '本科毕业于中南大学数据科学与大数据技术专业。关注大语言模型、图神经网络和 AI for Science，探索数据驱动的智能方法及其科学应用。':'I earned my bachelor’s degree in Data Science and Big Data Technology at Central South University. My interests include large language models, graph neural networks, and AI for Science, exploring data-driven intelligent methods and their scientific applications.',
     '邮件联系':'Email me','查看论文':'View publication','研究兴趣':'Research interests','大语言模型':'Large language models','图神经网络':'Graph neural networks','求知，是一段持续的旅程。':'Learning is a lifelong journey.',

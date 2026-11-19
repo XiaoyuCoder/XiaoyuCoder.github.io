@@ -80,6 +80,8 @@ a:focus-visible, button:focus-visible, pre:focus-visible { outline: 2px solid va
 
 /* Section structure */
 .content-section { padding-top: 75px; }
+.research-page { min-height: calc(100vh - 160px); padding-top: clamp(35px, 6vw, 65px); padding-bottom: clamp(45px, 8vw, 85px); }
+.research-page h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.4; margin-bottom: 30px; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
 .section-number { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--muted); line-height: 1.6; }
 .section-heading h2 { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 550; letter-spacing: 1.4px; line-height: 1.4; margin-top: 9px; }
@@ -111,7 +113,7 @@ a:focus-visible, button:focus-visible, pre:focus-visible { outline: 2px solid va
 .paper-meta { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .venue-badge { padding: 2px 9px; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-size: 11px; font-weight: 600; }
 .paper-type { font-family: var(--mono); font-size: 9px; letter-spacing: .6px; color: #7a90a7; }
-.paper-content h3 { font-family: var(--serif); font-weight: 500; font-size: 20px; line-height: 1.5; letter-spacing: -.15px; }
+.paper-content h2 { font-family: var(--serif); font-weight: 500; font-size: 20px; line-height: 1.5; letter-spacing: -.15px; }
 .paper-authors { font-size: 12px; color: #647b91; line-height: 1.9; margin-top: 14px; }
 .paper-authors strong { color: var(--ink); font-weight: 600; border-bottom: 1px solid #8db5e2; }
 .paper-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; width: 100%; margin-top: auto; padding-top: 21px; }
@@ -229,7 +231,7 @@ dialog pre { padding: 20px; margin: 22px 0; font-family: var(--mono); font-size:
   .degree-mark { display: none; }
   .publication { grid-template-columns: 1fr; padding: 23px; gap: 0; }
   .paper-art { display: none; }
-  .paper-content h3 { font-size: 20px; }
+  .paper-content h2 { font-size: 20px; }
   .paper-authors { font-size: 12px; }
   .paper-bottom { padding-top: 17px; }
   .honors-layout { grid-template-columns: 1fr; gap: 29px; }
@@ -267,7 +269,7 @@ dialog pre { padding: 20px; margin: 22px 0; font-family: var(--mono); font-size:
   .publication { padding: 21px 19px; }
   .paper-meta { gap: 10px; }
   .paper-type { font-size: 8px; }
-  .paper-content h3 { font-size: 19px; line-height: 1.55; }
+  .paper-content h2 { font-size: 19px; line-height: 1.55; }
   .paper-bottom { row-gap: 9px; }
   .paper-topics { gap: 10px; }
   .honors-list h3 { font-size: 12px; }
@@ -338,7 +340,7 @@ dialog pre { padding: 20px; margin: 22px 0; font-family: var(--mono); font-size:
 .publication { border-color: #cbdced; border-radius: 8px; box-shadow: 0 8px 28px rgb(16 52 100 / 5%); transition: border-color .2s, box-shadow .2s; }
 .publication:hover { border-color: #92b8e4; box-shadow: 0 12px 32px rgb(16 52 100 / 10%); }
 .paper-art { border-radius: 5px; background: #dcecff; color: #528ccc; }
-.paper-content h3 { color: #102f55; }
+.paper-content h2 { color: var(--ink); }
 .paper-authors { color: #4c6984; font-size: 13px; }
 .citation-trigger { color: #1254b1; font-size: 12px; font-weight: 600; }
 .scholarship-highlight { border-radius: 7px; background: #174d91; color: white; }
